@@ -12,12 +12,14 @@ resource "vsphere_virtual_machine" "main" {
   memory           = var.vm_memory
   folder           = vsphere_folder.main.path
   network_interface {
-    network_id = data.vsphere_network.main.id
+    network_id  = data.vsphere_network.main.id
+    ovf_mapping = "Ethernet 1"
   }
   dynamic "network_interface" {
     for_each = toset(var.portgroups_additional_nics)
     content {
-      network_id = data.vsphere_network.additional_nics[network_interface.value].id
+      network_id  = data.vsphere_network.additional_nics[network_interface.value].id
+      ovf_mapping = "nic-${network_interface.value}"
     }
   }
   lifecycle {
