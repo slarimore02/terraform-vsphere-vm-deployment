@@ -35,8 +35,13 @@ variable "vm_datastore" {
   type        = string
 }
 variable "vm_portgroup" {
-  description = "The vSphere portgroup name that the VMs will use"
+  description = "The name of the vSphere portgroup the VMs will use for the first NIC"
   type        = string
+}
+variable "portgroups_additional_nics" {
+  description = "A list of vSphere portgroup names that the VMs will use for additional NICs. Additional NICs are optional"
+  type        = list(string)
+  default     = []
 }
 variable "vm_folder" {
   description = "The folder that the VMs will be placed in. This will be the full path and name of the folder that will be created"

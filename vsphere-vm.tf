@@ -14,6 +14,12 @@ resource "vsphere_virtual_machine" "main" {
   network_interface {
     network_id = data.vsphere_network.main.id
   }
+  dynamic "network_interface" {
+    for_each = toset(var.portgroups_additional_nics)
+    content {
+      network_id = data.vsphere_network.additional_nics[network_interface.value].id
+    }
+  }
   lifecycle {
     ignore_changes = [guest_id]
   }

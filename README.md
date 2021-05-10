@@ -39,6 +39,7 @@ module "vsphere-vm-deployment" {
   vm_datastore       = "DATASTORE"
   name_prefix        = "PREFIX"
   vm_portgroup       = "PORTGROUP"
+  portgroups_additional_nics = ["PORTGROUP2", "PORTGROUP3"]
   compute_cluster    = "CLUSTER"
   vm_folder          = "FOLDER"
   vsphere_user       = "USERNAME"
@@ -76,12 +77,13 @@ output "controllers" {
 | compute\_cluster | The name of the vSphere cluster that the Avi Controllers will be deployed to | `string` | `null` | no |
 | content\_library | The name of the Content Library that has the VM Image | `string` | n/a | yes |
 | name\_prefix | This prefix is appended to the names of the VMs | `string` | n/a | yes |
+| portgroups\_additional\_nics | A list of vSphere portgroup names that the VMs will use for additional NICs. Additional NICs are optional | `list(string)` | `[]` | no |
 | vm\_count | The number of VMs to deploy | `number` | `1` | no |
 | vm\_cpu\_count | The number of CPUs for the VMs | `string` | `"2"` | no |
 | vm\_datastore | The vSphere Datastore that will back the VMs | `string` | n/a | yes |
 | vm\_folder | The folder that the VMs will be placed in. This will be the full path and name of the folder that will be created | `string` | n/a | yes |
 | vm\_memory | The amount of memory for the VMs in megabytes | `string` | `"4096"` | no |
-| vm\_portgroup | The vSphere portgroup name that the VMs will use | `string` | n/a | yes |
+| vm\_portgroup | The name of the vSphere portgroup the VMs will use for the first NIC | `string` | n/a | yes |
 | vm\_resource\_pool | The Resource Pool that the VMs will be deployed to | `string` | `""` | no |
 | vm\_template | The name of the VM Image that is hosted in a Content Library | `string` | n/a | yes |
 | vsphere\_datacenter | The vSphere Datacenter that the VMs will be deployed | `string` | n/a | yes |

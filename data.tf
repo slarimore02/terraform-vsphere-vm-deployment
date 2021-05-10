@@ -19,6 +19,12 @@ data "vsphere_network" "main" {
   name          = var.vm_portgroup
   datacenter_id = data.vsphere_datacenter.dc.id
 }
+data "vsphere_network" "additional_nics" {
+  for_each      = toset(var.portgroups_additional_nics)
+  name          = each.key
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
 data "vsphere_content_library" "library" {
   name = var.content_library
 }
