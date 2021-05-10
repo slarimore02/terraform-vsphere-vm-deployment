@@ -24,7 +24,7 @@ terraform {
   backend "local" {
   }
 }
-module "vm-deployment-vsphere" {
+module "vsphere-vm-deployment" {
   source  = "slarimore02/vm-deployment/vsphere"
   version = "1.0.x"
   
@@ -35,7 +35,7 @@ module "vm-deployment-vsphere" {
   vm_username        = "USERNAME"
   vsphere_datacenter = "DATACENTER"
   content_library    = "CONTENT_LIBRARY_NAME"
-  vm_template        = "controller-20.1.5-9148"
+  vm_template        = "TEMPLATE"
   vm_datastore       = "DATASTORE"
   name_prefix        = "PREFIX"
   vm_portgroup       = "PORTGROUP"
@@ -48,7 +48,7 @@ module "vm-deployment-vsphere" {
 
 
 output "controllers" {
-  value = module.avi-controller-vsphere.controllers
+  value = module.vsphere-vm-deployment.vm_ips
 }
 ```
 
