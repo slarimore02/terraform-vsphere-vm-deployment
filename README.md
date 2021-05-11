@@ -1,4 +1,4 @@
-# AVI Controller Deployment on vSphere Terraform module
+# VM Deployment on vSphere - Terraform module
 This Terraform module creates a specified  number of VMs on vSphere
 
 ## Module Functions
